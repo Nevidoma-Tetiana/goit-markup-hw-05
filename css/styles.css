@@ -17,6 +17,7 @@ html {
   --background-image-color: rgba(47, 48, 58, 0.4);
   --benefits-background-icon-color: #f5f4fa;
   --color-icon-team: #afb1b8;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -104,8 +105,26 @@ img {
 }
 
 .header-link {
+  display: block;
   padding-top: 32px;
   padding-bottom: 32px;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  color: var(--primery-text-color);
+  position: relative;
+  transition: color 250ms var(--timing-function);
+}
+
+.header-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 /* Link */
@@ -189,6 +208,7 @@ a {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+  transition: background-color 250ms var(--timing-function);
 }
 .contacts-link:not(:last-child) {
   margin-right: 50px;
@@ -336,6 +356,27 @@ a {
   margin-left: 30px;
 }
 
+.servises-list-item {
+  position: relative;
+}
+
+.servises-list-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--primery-white-color);
+  background: rgba(47, 48, 58, 0.8);
+  width: 100%;
+  height: 70px;
+}
+
 /* Feature */
 .feature-list .title {
   color: var(--primery-text-color);
@@ -420,6 +461,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 250ms var(--timing-function),
+    fill 250ms var(--timing-function);
 }
 
 .team-social-link:hover,
@@ -445,6 +488,7 @@ a {
   line-height: 1.18;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+  transition: background-color 250ms var(--timing-function);
 }
 .button:hover,
 .button:focus {
@@ -484,6 +528,8 @@ a {
   align-items: center;
   justify-content: center;
   fill: var(--color-icon-team);
+  transition: fill 250ms var(--timing-function),
+    border 250ms var(--timing-function);
 }
 
 .clients-link:hover,
@@ -525,13 +571,12 @@ a {
   color: var(--accent-color);
 }
 
-
-
 .footer-list-address {
   color: var(--primery-white-color);
   font-style: normal;
   font-size: 14px;
   line-height: 1.71;
+  transition: color 250ms var(--timing-function);
 }
 
 .footer-link-info {
@@ -539,6 +584,7 @@ a {
   font-style: normal;
   font-size: 14px;
   line-height: 1.71;
+  transition: color 250ms var(--timing-function);
 }
 .footer-info {
   margin-bottom: 9px;
@@ -577,11 +623,58 @@ a {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   fill: var(--primery-white-color);
+  transition: background-color 250ms var(--timing-function);
 }
 
 .social-item-link:hover,
 .social-item-link:focus {
   background-color: var(--accent-color);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms linear, visibility 250ms linear;
+}
+
+.modal {
+  width: 500px;
+  min-height: 500px;
+  background-color: var(--primery-white-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleY(1);
+  transition: transform 250ms;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scaleY(0);
+}
+
+.modal-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 50%;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Logotype */
@@ -617,6 +710,8 @@ a {
   cursor: pointer;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: background-color 250ms var(--timing-function),
+    fill 250ms var(--timing-function);
 }
 .btn-second:hover,
 .btn-second:focus {
@@ -683,4 +778,30 @@ a {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.projects-list-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(33, 150, 243, 0.9);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  height: 100%;
+  padding: 63px 24px;
+
+  transform: translateY(101%);
+  transition: transform 250ms var(--timing-function);
+}
+
+.projects-top-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.projects-list-item:hover .projects-list-img,
+.projects-list-item:focus .projects-list-img {
+  transform: translateY(0);
 }
