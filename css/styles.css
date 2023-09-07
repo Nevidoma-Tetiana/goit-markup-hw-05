@@ -622,7 +622,6 @@ a {
 /* -------------------backdrop-------------------- */
 .backdrop {
   background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: var(--for-box-shadow);
   position: fixed;
   top: 0;
   width: 100%;
@@ -636,12 +635,13 @@ a {
 }
 
 .modal {
-  background-color: var(--primary-white-color);
-  border-radius: 4px;
   width: 528px;
   min-height: 581px;
-  position: absolute;
+  background-color: var(--primary-white-color);
+  box-shadow: var(--for-box-shadow);
   padding: 40px;
+  border-radius: 4px;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scaleY(1);
